@@ -1,0 +1,15 @@
+{
+    "name": "nezajoel/server",
+    "autoload": {
+        "psr-4": {
+            "Nezajoel\\Server\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "uwineza53",
+            "email": "joeluwineza53@gmail.com"
+        }
+    ],
+    "require": {}
+}
