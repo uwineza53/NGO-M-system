@@ -6,7 +6,7 @@ const Loading = () => {
   return (
     <div className='w-full h-screen flex flex-col justify-center items-center'>
         <BiLoaderCircle size={30} className='animate-spin' />
-        <p>wait ...</p>
+        <p>wait a moment ...</p>
     </div>
   )
 }

@@ -15,3 +15,117 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.input-field {
+  /* variables */
+    --border: theme('colors.neutral.500');
+    --border-tint: theme('colors.neutral.300');
+    --on-issue: theme('colors.issue.600');
+    --on-issue-tint: theme('colors.issue.200');
+
+  & input {
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    padding-inline: 7px;
+    height: 45px;
+    font-size: medium;
+    width: 100%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+  /* & input::placeholder {
+    color: theme('colors.sky.500');
+  } */
+  & .icon {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: var(--on-issue);
+    display: none;
+  }
+  & .icons {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    place-items: center;
+  }
+  & label {
+    position: absolute;
+    top: -10px;
+    left: 7px;
+    background: var(--border);
+    color: var(--border-tint);
+    font-weight: bold;
+    padding-inline: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    display: none;
+  }
+  & .message {
+    background-color: var(--on-issue);
+    color: var(--on-issue-tint);
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+    position: relative;
+    margin-top: 3px;
+    z-index: 1;
+    isolation: isolate;
+
+    &::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-color: var(--on-issue);
+      position: absolute;
+      top: -15%;
+      right: 10px;
+      transform: rotate(45deg);
+      background-blend-mode:color-burn;
+      z-index: -1;
+      border-radius: 2px;
+    }
+  }
+
+  & input:focus {
+    padding-top: 10px;
+    border: 2px solid var(--border);
+
+    &::placeholder {
+      color: transparent;
+    }
+    & ~ label {
+      display: inline;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+      /* border: 2px solid var(--border); */
+    }
+  }
+
+  & input[focused="true"]:valid, & input[focused="true"]:invalid {
+    padding-top: 10px;
+    
+    & ~ label {
+      display: inline;
+    }
+  }
+
+  & input[focused="true"]:invalid {
+    border: 2px solid var(--on-issue);
+
+    & ~ label {
+      background-color: var(--on-issue);
+      color: var(--on-issue-tint);
+    }
+    & ~ .icon {
+      display: inline;
+      cursor: pointer;
+    }
+  }
+}
