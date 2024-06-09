@@ -23,35 +23,40 @@ body {
     --on-issue: theme('colors.issue.600');
     --on-issue-tint: theme('colors.issue.200');
 
-  & input {
+  & .input {
     border: 2px solid var(--border);
     border-radius: 5px;
-    padding-inline: 7px;
-    height: 45px;
+    padding-inline: 7px 65px;
+    
     font-size: medium;
     width: 100%;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
   }
-  /* & input::placeholder {
-    color: theme('colors.sky.500');
-  } */
-  & .icon {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    color: var(--on-issue);
-    display: none;
+  & .input:not(textarea) {
+    height: 45px;
   }
   & .icons {
     position: absolute;
-    top: 0;
+    top: 0%;
     right: 10px;
     height: 100%;
     display: flex;
-    gap: 5px;
+    place-items: flex-end;
+    padding-block: 15px;
     justify-content: center;
+    gap: 10px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    cursor: pointer;
+
+    & .info {
+      color: var(--on-issue);
+      display: none;
+    }
+  }
+  .input:not(textarea) ~ .icons {
     place-items: center;
   }
   & label {
@@ -73,7 +78,8 @@ body {
     padding: 5px 10px;
     font-size: 0.875rem; /* 14px */
     line-height: 1.25rem; /* 20px */
-    position: relative;
+    position: absolute;
+    right: 0;
     margin-top: 3px;
     z-index: 1;
     isolation: isolate;
@@ -93,7 +99,7 @@ body {
     }
   }
 
-  & input:focus {
+  & .input:focus {
     padding-top: 10px;
     border: 2px solid var(--border);
 
@@ -108,7 +114,7 @@ body {
     }
   }
 
-  & input[focused="true"]:valid, & input[focused="true"]:invalid {
+  & .input[focused="true"]:valid, & .input[focused="true"]:invalid {
     padding-top: 10px;
     
     & ~ label {
@@ -116,16 +122,15 @@ body {
     }
   }
 
-  & input[focused="true"]:invalid {
+  & .input[focused="true"]:invalid {
     border: 2px solid var(--on-issue);
 
     & ~ label {
       background-color: var(--on-issue);
       color: var(--on-issue-tint);
     }
-    & ~ .icon {
+    & ~ .icons .info {
       display: inline;
-      cursor: pointer;
     }
   }
 }

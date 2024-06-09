@@ -599,13 +599,40 @@ video {
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .gap-5 {
   gap: 1.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .bg-gray-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .text-center {
@@ -653,36 +680,36 @@ body {
   --border-tint: #cbd5e1;
   --on-issue: #dc2626;
   --on-issue-tint: #fecaca;
-  & input {
+  & .input {
     border: 2px solid var(--border);
     border-radius: 5px;
-    padding-inline: 7px;
-    height: 45px;
+    padding-inline: 7px 65px;
     font-size: medium;
     width: 100%;
     transition: 0.5s;
     outline: none;
   }
-  /* & input::placeholder {
-    color: theme('colors.sky.500');
-  } */
-  & .icon {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    color: var(--on-issue);
-    height: 100%;
-    display: none;
+  & .input:not(textarea) {
+    height: 45px;
   }
   & .icons {
     position: absolute;
-    top: 0;
+    top: 0%;
     right: 10px;
     height: 100%;
     display: flex;
-    /* flex-direction: column; */
-    gap: 5px;
+    place-items: flex-end;
+    padding-block: 15px;
     justify-content: center;
+    gap: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+    & .info {
+      color: var(--on-issue);
+      display: none;
+    }
+  }
+  .input:not(textarea) ~ .icons {
     place-items: center;
   }
   & label {
@@ -706,7 +733,8 @@ body {
     /* 14px */
     line-height: 1.25rem;
     /* 20px */
-    position: relative;
+    position: absolute;
+    right: 0;
     margin-top: 3px;
     z-index: 1;
     isolation: isolate;
@@ -724,7 +752,7 @@ body {
       border-radius: 2px;
     }
   }
-  & input:focus {
+  & .input:focus {
     padding-top: 10px;
     border: 2px solid var(--border);
     &::placeholder {
@@ -736,25 +764,20 @@ body {
       /* border: 2px solid var(--border); */
     }
   }
-  & input[focused="true"]:valid, & input[focused="true"]:invalid {
+  & .input[focused="true"]:valid, & .input[focused="true"]:invalid {
     padding-top: 10px;
     & ~ label {
       display: inline;
     }
   }
-  & input[focused="true"]:invalid {
+  & .input[focused="true"]:invalid {
     border: 2px solid var(--on-issue);
     & ~ label {
       background-color: var(--on-issue);
       color: var(--on-issue-tint);
     }
-    & ~ .icon {
+    & ~ .icons .info {
       display: inline;
-      cursor: pointer;
     }
   }
-}
-
-.peer:hover ~ .peer-hover\:inline {
-  display: inline;
 }

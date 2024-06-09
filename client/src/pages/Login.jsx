@@ -1,5 +1,5 @@
 import React from 'react'
-import { FieldList, TextInput } from '../components/Input';
+import { ChoiceBox, FieldList, SelectField, TextArea, TextInput } from '../components/Input';
 
 const Login = ({ props }) => {
     const arr = [
@@ -7,10 +7,12 @@ const Login = ({ props }) => {
         { value: '2', label: 'two' },
         { value: '3', label: 'three' }
     ];
+    const p = "^[a-zA-Z0-9 \n@#!_$^&*,.;'\":`~()?/-]+$";
     return (
-        <div>
+        <div className='flex flex-col gap-5'>
             <input type="text" />
-            <TextInput type="password" label="username" placeholder="Your username" pattern="[0-9]{1,5}" error="Only 5 numeric digits required" required="true" dataList={arr} listName="list" />
+            <TextInput type="date" label="username" placeholder="Your username" pattern={p} error="Only 5 numeric digits required" required="true" dataList={arr} listName="list" />
+            <ChoiceBox type="checkbox" label="username" placeholder="Your username" pattern={p} error="Only 5 numeric digits required" required="true" dataList={arr} name="list" />
         </div>
     );
 }
