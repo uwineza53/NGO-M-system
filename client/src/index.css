@@ -11,28 +11,35 @@
 }
 
 body {
+  @apply text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl;
+  
   font-family: 'nunito';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: theme('colors.neutral.900');
+  color: theme('colors.neutral.200');
 }
 
 .input-field {
   /* variables */
-    --border: theme('colors.neutral.500');
-    --border-tint: theme('colors.neutral.300');
+    --border: theme('colors.secondary.600');
+    --border-tint: theme('colors.secondary.300');
     --on-issue: theme('colors.issue.600');
     --on-issue-tint: theme('colors.issue.200');
 
   & .input {
     border: 2px solid var(--border);
     border-radius: 5px;
-    padding-inline: 7px 65px;
-    
+    padding-inline: 7px ;
+    background-color: theme('colors.neutral.800');
     font-size: medium;
     width: 100%;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
+    &[type="password"] {
+      padding-inline: 7px 65px;
+    }
   }
   & .input:not(textarea) {
     height: 45px;
@@ -124,6 +131,7 @@ body {
 
   & .input[focused="true"]:invalid {
     border: 2px solid var(--on-issue);
+    padding-inline: 7px 26px;
 
     & ~ label {
       background-color: var(--on-issue);
@@ -133,4 +141,25 @@ body {
       display: inline;
     }
   }
+}
+
+.tooltip-left {
+  isolation: isolate;
+  z-index: 1;
+  &::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: theme('colors.neutral.100');
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    translate: 50% -50%;
+    transform: rotate(45deg);
+    z-index: 0!important;
+  }
+}
+
+.menu-title {
+  @apply font-black flex gap-5 items-center whitespace-nowrap overflow-hidden overflow-ellipsis cursor-pointer;
 }

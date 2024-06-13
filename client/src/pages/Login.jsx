@@ -1,18 +1,28 @@
 import React from 'react'
-import { ChoiceBox, FieldList, SelectField, TextArea, TextInput } from '../components/Input';
+import { FormButton, TextInput } from '../components/Input';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = ({ props }) => {
-    const arr = [
-        { label: 'one' },
-        { value: '2', label: 'two' },
-        { value: '3', label: 'three' }
-    ];
-    const p = "^[a-zA-Z0-9 \n@#!_$^&*,.;'\":`~()?/-]+$";
+
+    const navigate = useNavigate();
+
     return (
-        <div className='flex flex-col gap-5'>
-            <input type="text" />
-            <TextInput type="date" label="username" placeholder="Your username" pattern={p} error="Only 5 numeric digits required" required="true" dataList={arr} listName="list" />
-            <ChoiceBox type="checkbox" label="username" placeholder="Your username" pattern={p} error="Only 5 numeric digits required" required="true" dataList={arr} name="list" />
+        <div className="flex flex-col w-full h-screen p-5">
+            <section className='flex flex-col gap-10 w-full sm:w-[80%] md:w-[65%] lg:w-[40%] xl:w-[35%] 2xl:w-[25%] items-center m-auto'>
+                <nav>
+                    <p className='font-bold text-3xl'>LOGIN</p>
+                    <p className='font-thin'>
+                        Your required to authenticate yourself before accessing this system, If you don't have access yet claim the authorization to the system admin.
+                    </p>
+                </nav>
+                <TextInput type="text" label="Username" placeholder="Your username" error="Required is an email!" />
+                <section className='w-full'>
+                    <TextInput type="password" label="Password" placeholder="Your password" error="Required is password!" />
+                    <p className='py-3 text-md'>Have you forgot your password? <Link to='/reset' className='text-primary hover:text-secondary'>Request reset link.</Link></p>
+                </section>
+
+                <FormButton text='Login' onClick={() => navigate('/dashboard')} />
+            </section>
         </div>
     );
 }
