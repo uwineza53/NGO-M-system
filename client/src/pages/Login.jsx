@@ -21,7 +21,7 @@ const Login = ({ props }) => {
                     <p className='py-3 text-md'>Have you forgot your password? <Link to='/reset' className='text-primary hover:text-secondary'>Request reset link.</Link></p>
                 </section>
 
-                <FormButton text='Login' onClick={() => navigate('/dashboard')} />
+                <FormButton text='Login' event={() => navigate('/dashboard')} />
             </section>
         </div>
     );

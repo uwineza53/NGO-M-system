@@ -12,14 +12,14 @@ export const TextInput = (props) => {
     return (
         <section className="relative input-field w-full">
             <div className="relative">
-                <input className="input" pattern={ props?.pattern } required focused={focused} onBlur={() =>setFocused("true")} type={ type } id={ props?.name } name={ props?.name } placeholder={ props?.placeholder } />
+                <input className="input" autoFocus={openError} autoCapitalize="true" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={ type } id={ props?.name } name={ props?.name } placeholder={ props?.placeholder } />
                 <label htmlFor="text">{ props?.label }</label>
                 <div className="icons">
                     {props?.type === 'password' && (type === 'text' ? <FaEye size={18} color={`theme(colors.neutral.200)`} onClick={() => setType('password')} /> : <ImEyeBlocked size={18} color={`theme(colors.neutral.200)`} onClick={() => setType('text')} />)}
                     <IoInformationCircleOutline size={18} className="info" onClick={() => setOpenError(!openError)} />
                 </div>
             </div>
-            {openError && <p className="message">{ props?.error }</p>}
+            {openError && <p className="message"><b className="block">{ props?.pattern?.error[0] }</b>{ props?.pattern?.error[1] }</p>}
         </section>
     );
 
@@ -37,7 +37,7 @@ export const FieldList = (props) => {
     return (
         <section className="relative input-field w-full">
             <div className="relative">
-                <input className="input" list={ props.listName } pattern={props?.pattern} required focused={focused} onBlur={() => setFocused("true")} type={props?.type} id={props?.name} name={props?.name} placeholder={props?.placeholder} />
+                <input className="input" list={ props.listName } pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={props?.type} id={props?.name} name={props?.name} placeholder={props?.placeholder} />
                 <label htmlFor="text">{ props?.label }</label>
                 <div className="icons">
                     <IoInformationCircleOutline size={19} className="info" onClick={() => setOpenError(!openError)} />
@@ -46,7 +46,7 @@ export const FieldList = (props) => {
             <datalist id={props.listName}>
                 {props?.dataList?.map((item) => (<option key={ item.value || item.label } value={ item.value || item.label }>{ item.label }</option>))}
             </datalist>
-            {openError && <p className="message">{ props?.error }</p>}
+            {openError && <p className="message"><b className="block">{ props?.pattern?.error[0] }</b>{ props?.pattern?.error[1] }</p>}
         </section>
     );
 
@@ -69,7 +69,7 @@ export const SelectField = (props) => {
     return (
         <section className="relative input-field w-full">
             <div className="relative">
-                <select className="input" pattern={props?.pattern} required focused={focused} onBlur={() => setFocused("true")} type={props?.type} id={props?.name} name={props?.name}>
+                <select className="input" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => setFocused("true") } type={props?.type} id={props?.name} name={props?.name}>
                     {props?.dataList?.map((item) => (<option key={ item.value || item.label } value={ item.value || item.label }>{ item.label }</option>))}
                 </select>
                 <label htmlFor="text">{ props?.label }</label>
@@ -97,13 +97,13 @@ export const TextArea = (props) => {
     return (
         <section className="relative input-field w-full">
             <div className="relative">
-                <textarea rows={5} className="input" pattern={props?.pattern} required focused={focused} onBlur={() => setFocused("true")} type={props?.type} id={props?.name} name={props?.name} placeholder={props?.placeholder} autoComplete='off'></textarea>
+                <textarea rows={5} className="input" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={props?.type} id={props?.name} name={props?.name} placeholder={props?.placeholder} autoComplete='off'></textarea>
                 <label htmlFor="text">{ props?.label }</label>
                 <div className="icons">
                     <IoInformationCircleOutline size={19} className="info" onClick={() => setOpenError(!openError)} />
                 </div>
             </div>
-            {openError && <p className="message">{ props?.error }</p>}
+            {openError && <p className="message"><b className="block">{ props?.pattern?.error[0] }</b>{ props?.pattern?.error[1] }</p>}
         </section>
     );
 }
@@ -112,8 +112,8 @@ export const ChoiceBox = (props) => {
     return (
         <div className="choiceBox w-full">
             <label className="font-bold text-md">{ props.label }</label>
-            {props?.dataList?.map((item) => (
-                <span className="flex items-center gap-2 px-2"><input name={props.name} key={item.value} type={props.type} /> { item.label }</span>
+            {props?.items?.map((item) => (
+                <span className="flex items-center gap-2 px-2 py-1"><input name={props.name} key={item.value} type={props.type} required={props?.required} /> { item.label }</span>
             ))}
         </div>
     );
@@ -121,6 +121,6 @@ export const ChoiceBox = (props) => {
 
 export const FormButton = (props) => {
     return (
-        <button className={`bg-secondary-800 border-[.5px] border-neutral-600 text-secondary-200 hover:neon-fuchsia rounded-md h-10 w-1/2 ${props.className}`} {...props}>{ props.text }</button>
+        <button style={{minHeight: '40px'}} className={`bg-secondary-800 border-[1px] border-neutral-600 text-secondary-200 hover:neon-fuchsia text-base rounded-md w-1/2 ${props.className}`} type={props?.type} onClick={props?.event}>{ props.text }</button>
     );
 }
