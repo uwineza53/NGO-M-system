@@ -12,6 +12,14 @@ module.exports = {
         secondary: { ...colors.fuchsia, DEFAULT: colors.fuchsia[500] },
         neutral: { ...colors.sky, DEFAULT: colors.sky[500] },
         issue: { ...colors.red, DEFAULT: colors.red[500] }
+      },
+      animation: {
+        "slide-in": 'slide-in .1s ease-in forwards',
+      },
+      keyframes: {
+        'slide-in': {
+          '100%': { right: '1.5%' },
+        }
       }
     },
   },

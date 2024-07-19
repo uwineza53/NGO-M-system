@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const MenuButton = ({ icon, title, route, name, menuSetter }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { pathname, state } = useLocation();
   // console.log(useLocation());
 

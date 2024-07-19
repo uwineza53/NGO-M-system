@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TableListRow from '../components/TableListRow';
 import ModalBox from '../components/ModalBox';
 import { IoEye, IoTrashBin } from 'react-icons/io5';
 import { PiPencil } from 'react-icons/pi';
 import Toast from '../components/Toast';
+import { fetching, useFetch } from '../utils/useFetch';
 
 const MemberView = () => {
 
@@ -20,6 +21,15 @@ const MemberView = () => {
         e.stopPropagation();
         setIsToastOpen(true);
     }
+
+    // useEffect(() =>{
+    //     const options = {
+    //         method: 'GET',
+    //         // body: JSON.stringify({'message': 'Hello World'})
+    //     }
+    //     fetching('http://127.0.0.1:9001/districts?province=1').then(res => res.json()).then(data => console.log(data));
+    // },[isToastOpen]);
+        
 
     return (
         <div className='report-page'>

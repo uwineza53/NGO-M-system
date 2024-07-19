@@ -2,7 +2,8 @@
     "name": "nezajoel/server",
     "autoload": {
         "psr-4": {
-            "Nezajoel\\Server\\": "src/"
+            "src\\": "src/",
+            "config\\": "config/"
         }
     },
     "authors": [

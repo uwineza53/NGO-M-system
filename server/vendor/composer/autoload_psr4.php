@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Nezajoel\\Server\\' => array($baseDir . '/src'),
+    'src\\' => array($baseDir . '/src'),
+    'config\\' => array($baseDir . '/config'),
 );

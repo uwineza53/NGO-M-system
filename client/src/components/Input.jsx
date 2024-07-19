@@ -12,7 +12,7 @@ export const TextInput = (props) => {
     return (
         <section className="relative input-field w-full">
             <div className="relative">
-                <input className="input" autoFocus={openError} autoCapitalize="true" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={ type } id={ props?.name } name={ props?.name } placeholder={ props?.placeholder } />
+                <input className="input" autoFocus={openError} autoCapitalize="true" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={ type } id={ props?.name } name={ props?.name } value={props?.value} placeholder={ props?.placeholder } onChange={ props?.onChange } />
                 <label htmlFor="text">{ props?.label }</label>
                 <div className="icons">
                     {props?.type === 'password' && (type === 'text' ? <FaEye size={18} color={`theme(colors.neutral.200)`} onClick={() => setType('password')} /> : <ImEyeBlocked size={18} color={`theme(colors.neutral.200)`} onClick={() => setType('text')} />)}
@@ -37,7 +37,7 @@ export const FieldList = (props) => {
     return (
         <section className="relative input-field w-full">
             <div className="relative">
-                <input className="input" list={ props.listName } pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={props?.type} id={props?.name} name={props?.name} placeholder={props?.placeholder} />
+                <input className="input" list={ props.listName } pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={props?.type} id={props?.name} name={props?.name} placeholder={props?.placeholder} onChange={props?.onChange} />
                 <label htmlFor="text">{ props?.label }</label>
                 <div className="icons">
                     <IoInformationCircleOutline size={19} className="info" onClick={() => setOpenError(!openError)} />
@@ -69,7 +69,8 @@ export const SelectField = (props) => {
     return (
         <section className="relative input-field w-full">
             <div className="relative">
-                <select className="input" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => setFocused("true") } type={props?.type} id={props?.name} name={props?.name}>
+                <select className="input" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => setFocused("true")} type={props?.type} id={props?.name} value={props?.value} name={props?.name} onChange={props?.onChange}>
+                    <option value=''>Select { props?.name }</option>
                     {props?.dataList?.map((item) => (<option key={ item.value || item.label } value={ item.value || item.label }>{ item.label }</option>))}
                 </select>
                 <label htmlFor="text">{ props?.label }</label>
@@ -97,7 +98,7 @@ export const TextArea = (props) => {
     return (
         <section className="relative input-field w-full">
             <div className="relative">
-                <textarea rows={5} className="input" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={props?.type} id={props?.name} name={props?.name} placeholder={props?.placeholder} autoComplete='off'></textarea>
+                <textarea rows={5} className="input" pattern={props?.pattern?.regex} required={props?.required} focused={focused} onBlur={() => { setFocused("true"); setOpenError(false); }} type={props?.type} id={props?.name} name={props?.name} onChange={props?.onChange} placeholder={props?.placeholder} autoComplete='off'></textarea>
                 <label htmlFor="text">{ props?.label }</label>
                 <div className="icons">
                     <IoInformationCircleOutline size={19} className="info" onClick={() => setOpenError(!openError)} />
@@ -113,7 +114,7 @@ export const ChoiceBox = (props) => {
         <div className="choiceBox w-full">
             <label className="font-bold text-md">{ props.label }</label>
             {props?.items?.map((item) => (
-                <span className="flex items-center gap-2 px-2 py-1"><input name={props.name} key={item.value} type={props.type} required={props?.required} /> { item.label }</span>
+                <span key={props.name + item.value} className="flex items-center gap-2 px-2 py-1"><input name={props.name} key={item.value} type={props.type} required={props?.required} onChange={props?.onChange} /> { item.label }</span>
             ))}
         </div>
     );

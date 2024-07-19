@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { TbWorldSearch } from "react-icons/tb";
 import { useParams } from 'react-router-dom';
 

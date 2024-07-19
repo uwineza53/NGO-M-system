@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-
+/**
+ * 
+ * Pre-designed 
+ */
 const TableListRow = ({ className, children, details }) => {
     const [isOpen, setIsOpen] = useState(false);
 
